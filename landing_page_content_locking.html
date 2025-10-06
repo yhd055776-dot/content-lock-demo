@@ -1,0 +1,193 @@
+<!--
+Simple content-locking landing page (single-file HTML)
+Instructions: save this file as landing_page_content_locking.html and upload to your web host or GitHub Pages.
+This is a demo/simulation only — replace the fake offer links with real offer links from OGAds when ready.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Get Free Gift Card - Demo</title>
+  <style>
+    :root{--bg:#0f1720;--card:#1f2937;--accent:#06b6d4;--muted:#9ca3af;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:linear-gradient(180deg,#071127 0%, #0b1a2b 100%);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .wrap{width:100%;max-width:900px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:14px;padding:28px;box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    header{display:flex;gap:16px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    h1{margin:0;font-size:20px}
+    p.lead{color:var(--muted);margin-top:8px}
+
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:22px}
+    .box{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px}
+    .benefits{list-style:none;padding:0;margin:0}
+    .benefits li{margin-bottom:10px;color:var(--muted)}
+
+    .cta{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+    .btn{background:linear-gradient(90deg,var(--accent),#0ea5a5);border:none;padding:12px 16px;border-radius:8px;font-weight:600;cursor:pointer}
+    .mutebtn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    .locker{margin-top:12px;padding:14px;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.12));border-radius:8px;color:var(--muted);}
+
+    footer{margin-top:14px;font-size:13px;color:var(--muted)}
+
+    /* Modal simulation */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;padding:20px;z-index:40}
+    .modal{background:#0b1220;padding:20px;border-radius:12px;width:100%;max-width:520px;color:#e6eef6}
+    .offer-list{display:grid;gap:10px}
+    .offer{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:8px;background:rgba(255,255,255,0.02)}
+    .offer button{padding:8px 12px;border-radius:8px;border:none;background:var(--accent);cursor:pointer}
+
+    /* small */
+    @media (max-width:880px){.grid{grid-template-columns:1fr;}.logo{width:44px;height:44px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="logo">GC</div>
+        <div>
+          <h1>Get a $10 Gift Card — Complete One Quick Offer</h1>
+          <p class="lead">Finish a short, simple offer to unlock your instant digital reward. This is a demo content-lock page ready for testing.</p>
+        </div>
+      </header>
+
+      <div class="grid">
+        <div>
+          <div class="box">
+            <h3>How it works</h3>
+            <ul class="benefits">
+              <li>Click "Unlock Now" to view available offers.</li>
+              <li>Complete any single offer (e.g. install app, sign up).</li>
+              <li>After completion you will get a code or direct access to your reward.</li>
+            </ul>
+
+            <div class="locker">
+              <strong>Note:</strong> This page is a demo. Replace demo links with OGAds content locker and offer links when you go live.
+            </div>
+
+            <div style="margin-top:16px" class="cta">
+              <button class="btn" id="openOffers">Unlock Now 🔓</button>
+              <button class="mutebtn" id="learnMore">Learn How This Works</button>
+            </div>
+          </div>
+
+          <footer>
+            <p>Need help? Contact support@yourdomain.example (demo) — make sure to follow OGAds policy and use valid offer links.</p>
+          </footer>
+        </div>
+
+        <aside>
+          <div class="box">
+            <h4>Your Reward</h4>
+            <p style="font-size:20px;margin:6px 0;">$10 Digital Gift Card</p>
+            <p class="lead">Available for users who complete one qualifying offer.</p>
+
+            <div style="margin-top:12px">
+              <strong>Traffic tips</strong>
+              <ul style="color:var(--muted);margin-top:8px">
+                <li>Use short social videos (TikTok/Shorts) to drive mobile users.</li>
+                <li>Target gaming and app-interested audiences.</li>
+                <li>Mobile-first landing pages improve conversion.</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <template id="offersTpl">
+        <div class="modal-backdrop" id="modal">
+          <div class="modal" role="dialog" aria-modal="true">
+            <h3>Select an offer to complete</h3>
+            <p style="color:var(--muted);margin-top:6px">This is a demo list. When live, link each offer button to the actual offer URL from your OGAds dashboard.</p>
+
+            <div class="offer-list" style="margin-top:12px">
+              <div class="offer">
+                <div>
+                  <strong>Install App — Quick</strong>
+                  <div style="font-size:13px;color:var(--muted)">Estimated time: 1–3 min</div>
+                </div>
+                <button class="startOffer" data-offer="https://example.com/offer1">Start</button>
+              </div>
+
+              <div class="offer">
+                <div>
+                  <strong>Short Survey</strong>
+                  <div style="font-size:13px;color:var(--muted)">Complete a one-page survey</div>
+                </div>
+                <button class="startOffer" data-offer="https://example.com/offer2">Start</button>
+              </div>
+
+              <div class="offer">
+                <div>
+                  <strong>Sign-up + Confirm Email</strong>
+                  <div style="font-size:13px;color:var(--muted)">Quick account creation</div>
+                </div>
+                <button class="startOffer" data-offer="https://example.com/offer3">Start</button>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end">
+              <button id="closeModal" class="mutebtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template id="thankTpl">
+        <div class="modal-backdrop" id="thankModal">
+          <div class="modal">
+            <h3>Thank you!</h3>
+            <p style="color:var(--muted);margin-top:8px">Your completion was recorded (demo). Use the code below to redeem your reward:</p>
+            <div style="background:rgba(255,255,255,0.03);padding:12px;border-radius:8px;margin-top:12px;font-weight:700;letter-spacing:1px">DEMO-REWARD-1234</div>
+
+            <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
+              <button id="closeThank" class="btn">Done</button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+
+<script>
+  document.getElementById('openOffers').addEventListener('click', ()=>{
+    const tpl = document.getElementById('offersTpl').content.cloneNode(true);
+    document.body.appendChild(tpl);
+    attachOfferHandlers();
+  });
+
+  function attachOfferHandlers(){
+    document.querySelectorAll('.startOffer').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const url = e.currentTarget.dataset.offer;
+        simulateOfferCompletion(url);
+      });
+    });
+
+    document.getElementById('closeModal').addEventListener('click', ()=>{
+      const m = document.getElementById('modal'); if(m) m.remove();
+    });
+  }
+
+  function simulateOfferCompletion(url){
+    const m = document.getElementById('modal'); if(m) m.remove();
+    setTimeout(()=>{
+      const tpl = document.getElementById('thankTpl').content.cloneNode(true);
+      document.body.appendChild(tpl);
+      document.getElementById('closeThank').addEventListener('click', ()=>{
+        const tm = document.getElementById('thankModal'); if(tm) tm.remove();
+      });
+    }, 900);
+  }
+
+  document.getElementById('learnMore').addEventListener('click', ()=>{
+    alert('Tip: Use short mobile-first landing pages, clear CTAs, and OGAds content locker to increase conversions.');
+  });
+</script>
+</body>
+</html>
